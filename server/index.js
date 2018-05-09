@@ -2,26 +2,35 @@ import express from "express";
 import { join } from "path";
 import open from "open";
 import webpack from 'webpack';
-import config from '../webpack.config.dev';
-
-/* eslint-disable no-console */
-const port = 3000;
+import webpackConfig from '../webpack.config.dev';
+import config from "../config/config";
+import getTweetSentiments from "./twitterApi";
 
 const app = express();
-const compiler = webpack(config);
+
+const compiler = webpack(webpackConfig);
+
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: config.output.publicPath
+  publicPath: webpackConfig.output.publicPath
 }));
-
+// connect to mongo db
+// const mongoUri = config.mongo.host;
+// mongoose.connect(mongoUri, { server: { socketOptions: { keepAlive: 1 } } });
+// mongoose.connection.on('error', () => {
+//   throw new Error(`unable to connect to database: ${mongoUri}`);
+// });
 app.get("/", function(req, res) {
+  getTweetSentiments();
   res.sendFile(join(__dirname, "../src/index.html"));
 });
-app.listen(port, function(err) {
+
+app.listen(config.port, (err) => {
   if (err) {
     console.log(err);
   } else {
-    open("http://localhost:" + port);
+    console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
+    open(`http://localhost:${config.port}`);
   }
 });

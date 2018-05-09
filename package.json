@@ -4,22 +4,20 @@
   "version": "3.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rajeshdh/himachali-tweet-bot.git"
+    "url": "https://github.com/rajeshdh/twittersentiments.git"
   },
   "keywords": [
     "twitter",
     "tweet-bot",
-    "react",
-    "node.js",
-    "mongodb",
-    "twit"
+    "sentiment",
+    "node.js"
   ],
   "bugs": {
-    "url": "https://github.com/rajeshdh/himachali-tweet-bot/issues"
+    "url": "https://github.com/rajeshdh/twittersentiments/issues"
   },
   "scripts": {
     "prestart": "babel-node server/startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "start": "npm-run-all --parallel security-check open:src test:watch",
     "open:src": "babel-node server/index.js",
     "lint": "esw webpack.config.* src server --color",
     "lint:watch": "npm run lint -- --watch",
@@ -32,6 +30,12 @@
   "author": "Rajesh Dhiman @paharihacker",
   "license": "MIT",
   "dependencies": {
+    "colors": "^1.2.4",
+    "dotenv": "^5.0.1",
+    "joi": "^13.3.0",
+    "sentiment": "^5.0.0",
+    "twit": "^2.2.9",
+    "twitter": "^1.7.1",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
