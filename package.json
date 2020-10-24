@@ -32,7 +32,7 @@
   "dependencies": {
     "colors": "^1.2.4",
     "dotenv": "^5.0.1",
-    "joi": "^13.3.0",
+    "joi": "^17.3.0",
     "sentiment": "^5.0.0",
     "twit": "^2.2.9",
     "twitter": "^1.7.1",
